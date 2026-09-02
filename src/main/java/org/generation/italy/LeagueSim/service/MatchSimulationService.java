@@ -223,7 +223,8 @@ public class MatchSimulationService {
         for (Player p : starters) {
             StatAccumulator a = acc.get(p);
             BigDecimal rating = computeRating(p, a, goalsConceded, cleanSheet);
-            lines.add(new PlayerStatLine(p, rating, a.goals, goalsConceded, a.ownGoals, a.assists,
+            int playerGoalsConceded = p.getPosition() == Position.P ? goalsConceded : 0;
+            lines.add(new PlayerStatLine(p, rating, a.goals, playerGoalsConceded, a.ownGoals, a.assists,
                     a.penaltySaved, a.penaltyFailed, cleanSheet, a.yellowCards, a.redCard, true));
         }
         return lines;

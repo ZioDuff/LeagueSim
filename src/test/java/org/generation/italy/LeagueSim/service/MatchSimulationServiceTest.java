@@ -33,12 +33,12 @@ class MatchSimulationServiceTest {
 
         for (PlayerStatLine line : outcome.homeLines()) {
             assertRatingInRange(line.rating());
-            assertEquals(outcome.awayGoals(), line.goalsConceded());
+            assertEquals(line.player().getPosition() == Position.P ? outcome.awayGoals() : 0, line.goalsConceded());
             assertEquals(outcome.awayGoals() == 0, line.cleanSheet());
         }
         for (PlayerStatLine line : outcome.awayLines()) {
             assertRatingInRange(line.rating());
-            assertEquals(outcome.homeGoals(), line.goalsConceded());
+            assertEquals(line.player().getPosition() == Position.P ? outcome.homeGoals() : 0, line.goalsConceded());
             assertEquals(outcome.homeGoals() == 0, line.cleanSheet());
         }
     }
