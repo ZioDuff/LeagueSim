@@ -249,7 +249,8 @@ public class MatchSimulationService {
 
         rating += (random.nextDouble() - 0.5) * RATING_NOISE_RANGE;
         rating = Math.max(MIN_RATING, Math.min(MAX_RATING, rating));
-        return BigDecimal.valueOf(rating).setScale(2, RoundingMode.HALF_UP);
+        rating = Math.round(rating * 2) / 2.0;
+        return BigDecimal.valueOf(rating).setScale(1, RoundingMode.HALF_UP);
     }
 
     private List<Player> exclude(List<Player> players, Player excluded) {
